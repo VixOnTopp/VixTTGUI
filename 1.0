@@ -1,0 +1,133 @@
+local VixGUI = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+local AutoFarm = Instance.new("TextButton")
+local AntiAFK = Instance.new("TextButton")
+
+--Properties:
+
+VixGUI.Name = "VixGUI"
+VixGUI.Parent = game.CoreGui
+
+main.Name = "main"
+main.Parent = VixGUI
+main.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+main.BorderSizePixel = 4
+main.Position = UDim2.new(0.334063292, 0, 0.259962022, 0)
+main.Size = UDim2.new(0, 271, 0, 252)
+main.Active = true
+main.Draggable= true
+
+Frame.Parent = main
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame.Position = UDim2.new(-0.00173004263, 0, -0.00194271025, 0)
+Frame.Size = UDim2.new(0, 271, 0, 43)
+
+TextLabel.Parent = main
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0.262939215, 0, -0.00953286793, 0)
+TextLabel.Size = UDim2.new(0, 129, 0, 46)
+TextLabel.Font = Enum.Font.Oswald
+TextLabel.Text = "VIX GUI"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+TextLabel_2.Parent = main
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Position = UDim2.new(0.738954008, 0, -0.0174693763, 0)
+TextLabel_2.Size = UDim2.new(0, 70, 0, 46)
+TextLabel_2.Font = Enum.Font.Oswald
+TextLabel_2.Text = "Q to close"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextWrapped = true
+
+TextLabel_3.Parent = main
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.Position = UDim2.new(0.00463664532, 0, -0.00953286793, 0)
+TextLabel_3.Size = UDim2.new(0, 70, 0, 46)
+TextLabel_3.Font = Enum.Font.Oswald
+TextLabel_3.Text = "V to open"
+TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.TextScaled = true
+TextLabel_3.TextSize = 14.000
+TextLabel_3.TextWrapped = true
+
+AutoFarm.Name = "AutoFarm"
+AutoFarm.Parent = main
+AutoFarm.BackgroundColor3 = Color3.fromRGB(54, 54, 54)
+AutoFarm.BackgroundTransparency = 0.450
+AutoFarm.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AutoFarm.BorderSizePixel = 4
+AutoFarm.Position = UDim2.new(0.205976531, 0, 0.227610737, 0)
+AutoFarm.Size = UDim2.new(0, 157, 0, 74)
+AutoFarm.Font = Enum.Font.Oswald
+AutoFarm.Text = "AutoFarm"
+AutoFarm.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoFarm.TextScaled = true
+AutoFarm.TextSize = 14.000
+AutoFarm.TextWrapped = true
+AutoFarm.MouseButton1Click:Connect(function()
+	_G.autotap = true
+	while _G.autotap == true do
+		game:GetService("ReplicatedStorage").Events.ClientClick:FireServer()
+		wait(0.5)
+	end
+end)
+
+AntiAFK.Name = "AntiAFK"
+AntiAFK.Parent = main
+AntiAFK.BackgroundColor3 = Color3.fromRGB(54, 54, 54)
+AntiAFK.BackgroundTransparency = 0.450
+AntiAFK.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AntiAFK.BorderSizePixel = 4
+AntiAFK.Position = UDim2.new(0.205976531, 0, 0.648245692, 0)
+AntiAFK.Size = UDim2.new(0, 157, 0, 74)
+AntiAFK.Font = Enum.Font.Oswald
+AntiAFK.Text = "Anti AFK"
+AntiAFK.TextColor3 = Color3.fromRGB(255, 255, 255)
+AntiAFK.TextScaled = true
+AntiAFK.TextSize = 14.000
+AntiAFK.TextWrapped = true
+AutoFarm.MouseButton1Click:Connect(function()
+		local vu = game:GetService("VirtualUser")
+		game:GetService("Players").LocalPlayer.Idled:connect(function()
+			vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+			wait(1)
+			vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	end)
+end)
+
+
+-- Scripts:
+
+local function HGRQ_fake_script() -- main.LocalScript 
+	local script = Instance.new('LocalScript', main)
+
+	local Plr = game.Players.LocalPlayer
+	
+	Plr:GetMouse().KeyDown:Connect(function(V)
+	    if V == "v" then
+	        script.Parent.Visible = true
+	    end
+	    end)
+	
+	local Plr = game.Players.LocalPlayer
+	
+	Plr:GetMouse().KeyDown:Connect(function(Q)
+		if Q == "q" then
+			script.Parent.Visible = false
+		end
+	end)
+end
+coroutine.wrap(HGRQ_fake_script)()
